@@ -2,6 +2,9 @@
  * Created by janny on 18.02.2018.
  */
 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,7 +13,7 @@ public class QuickSort {
 
     static  ArrayList<Integer> array = new ArrayList<Integer>();
 
-    public static void quickSort(ArrayList<Integer> arr, int first_element, int last_element){
+    public void quickSort(ArrayList<Integer> arr, int first_element, int last_element){
         int p = (first_element + last_element) /2;
         int a,b;
         int j = last_element;
@@ -55,13 +58,20 @@ public class QuickSort {
             e.printStackTrace();
         }
 
-        quickSort(array, 1, array.size() - 1);
+        new QuickSort().quickSort(array, 1, array.size() - 1);
 
         Iterator<Integer> it = array.iterator();
 
         while (it.hasNext()){
             System.out.println(it.next());
         }
+
+        JUnitCore runner = new JUnitCore();
+        Result result = runner.run(Tests.class);
+        System.out.println("run tests: " + result.getRunCount());
+        System.out.println("failed tests: " + result.getFailureCount());
+        System.out.println("ignored tests: " + result.getIgnoreCount());
+        System.out.println("success: " + result.wasSuccessful());
 
 
         }

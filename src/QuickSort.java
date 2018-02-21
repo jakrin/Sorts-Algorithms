@@ -14,29 +14,41 @@ public class QuickSort {
     static  ArrayList<Integer> array = new ArrayList<Integer>();
 
     public void quickSort(ArrayList<Integer> arr, int first_element, int last_element){
-        int p = (first_element + last_element) /2;
+
+        if (arr.size() == 0) return;
+        if (first_element > last_element) return;
+
+        int p = arr.get((first_element + last_element)/2);
         int a,b;
         int j = last_element;
+        int i = first_element;
 
-        for (int i = 0; i < j; i++){
-            if (arr.get(i) >= arr.get(p)) {
-                a = arr.get(i);
-                for (; j >= i; j--){
-                    if (arr.get(j) <= arr.get(p)){
+                while (i <= j){
+                    while ((arr.get(i) < p)){
+                        i++;
+                    }
+
+                    while (arr.get(j) > p) {
+                        j--;
+                    }
+                    if (i <= j) {
+                        a = arr.get(i);
                         b = arr.get(j);
                         arr.set(i, b);
                         arr.set(j, a);
-                        break;
-                    }
-                }
-            }
-        }
 
-        if (first_element < p - 1){
-            quickSort(arr, first_element , p - 1);
-        }
-        if (p + 1 < last_element){
-            quickSort(arr, p + 1, last_element);
+                        i++;
+                        j--;
+
+                    }
+
+                }
+
+        if (first_element < j)
+            quickSort(arr, first_element , j);
+
+        if (i < last_element){
+           quickSort(arr, i, last_element);
         }
 
 
@@ -58,7 +70,7 @@ public class QuickSort {
             e.printStackTrace();
         }
 
-        new QuickSort().quickSort(array, 1, array.size() - 1);
+        new QuickSort().quickSort(array, 0, array.size() - 1);
 
         Iterator<Integer> it = array.iterator();
 

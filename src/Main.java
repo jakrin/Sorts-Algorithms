@@ -32,7 +32,9 @@ public class Main {
 
         //new QuickSort().sort(array, 0, array.size() - 1);
 
-        new MergeSort().sort(array, 0, array.size() - 1);
+        //new MergeSort().sort(array, 0, array.size() - 1);
+
+        new BubbleSort().sort(array, 0, array.size() - 1);
 
         Iterator<Integer> it = array.iterator();
 
